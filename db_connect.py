@@ -1,4 +1,4 @@
-import mariadb
+import mysql.connector as mysql
 from decouple import config
 
 dbUser = config('dbUser')
@@ -7,7 +7,7 @@ dbHost = config('dbHost')
 dbPort = config('dbPort')
 dbName = config('dbName')
 
-mydb = mariadb.connect(
+mydb = mysql.connect(
         user=dbUser,
         password=dbPass,
         host=dbHost,
