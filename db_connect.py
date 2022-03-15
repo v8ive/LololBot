@@ -1,17 +1,17 @@
 import mariadb
 from decouple import config
 
-dbpass = config('dbPass')
-userToken = config('userToken')
-hostToken = config('hostToken')
-portToken = config('portToken')
-dbname = config('dbname')
+dbUser = config('dbUser')
+dbPass = config('dbPass')
+dbHost = config('dbHost')
+dbPort = config('dbPort')
+dbName = config('dbName')
 
 mydb = mariadb.connect(
-        user=userToken,
-        password=dbpass,
-        host=hostToken,
-        port=int(portToken),
-        database=dbname)
+        user=dbUser,
+        password=dbPass,
+        host=dbHost,
+        port=int(dbPort),
+        database=dbName)
 
 db = mydb.cursor()
