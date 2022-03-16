@@ -54,7 +54,7 @@ async def on_member_join(ctx, member: discord.Member):
     embed = discord.Embed(
         title=f"Welcome {member.name}",
         color=0xd4af37,
-        description=f"{member.name} has joined the Lolol Crew! :tada: Welcome!"
+        description=f"{member.name} has joined the Lolol Crew! :tada: Welcome and enjoy your stay!"
     )
     embed.set_thumbnail(url=member.avatar_url)
     embed.set_footer(

@@ -1,17 +1,6 @@
-import mysql.connector as mysql
+import sqlite3 as mysql
 from decouple import config
 
-dbUser = config('dbUser')
-dbPass = config('dbPass')
-dbHost = config('dbHost')
-dbPort = config('dbPort')
-dbName = config('dbName')
-
-mydb = mysql.connect(
-        user=dbUser,
-        password=dbPass,
-        host=dbHost,
-        port=int(dbPort),
-        database=dbName)
+mydb = mysql.connect('./db/main.db')
 
 db = mydb.cursor()
