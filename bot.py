@@ -1,5 +1,6 @@
 from discord.ext import commands
-from db_connect import db, mydb
+from db import db, mydb
+import setup_db
 from decouple import config
 import discord
 
@@ -10,10 +11,7 @@ token = config('token')
 
 @bot.event
 async def on_ready():
-    db.execute(
-        f"create table if not exists users(id bigint not null primary key, name varchar(100) not null)"
-    )
-    mydb.commit()
+    setup_db.initialize()
     guilds = ", ".join(bot.guilds) if len(bot.guilds) > 1 else bot.guilds[0]
     Users = []
     Bots = []
@@ -33,14 +31,19 @@ async def on_ready():
     bots = ", ".join(Bots) if len(Bots) > 1 else Bots[0]
 
     status = f'''
+    
+============================================================
 Discord.py Version : {discord.__version__}
 
-Successfully Connected...
+...Successfully Connected...
 
-Connected to ({bot.user}): {guilds}
++- Connected to ({bot.user}): {guilds}
 
-Bots  ({len(Bots)}): {bots}
-Users ({len(Users)}): {users}
++- Bots  ({len(Bots)}): 
+            {bots}
++- Users ({len(Users)}): 
+            {users}
+============================================================
 
 '''
     print(status)
